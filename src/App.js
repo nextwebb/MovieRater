@@ -1,23 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [movies, setMovie] = useState(['Movie 1', 'Movie 2'])
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <h1>MovieRater</h1>
+       <div className="layout">
+         <div>
+           { movies.map(movie => {
+             return <h2>{movie}</h2>
+           })}
+         </div>
+         <div>Movie details</div>
+         
+         
+       </div>
       </header>
     </div>
   );
