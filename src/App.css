@@ -24,7 +24,11 @@
 .purple{
   color: purple;
 }
-.rate-container {
+.rate-container  {
   border-top: 2px solid purple;
   margin-top:20px
+}
+.rate-container .fa-star {
+  font-size: 1.8rem;
+  cursor: pointer;
 }
