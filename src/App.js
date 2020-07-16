@@ -6,7 +6,8 @@ import MovieDetails from './components/movie-details';
 import MovieForm from './components/movie-forms'
 
 function App() {
-  const [movies, setMovie] = useState([])
+  //returns an array of all movies from the api
+  const [movies, setMovies] = useState([])
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [editedMovie, setEditedMovie] = useState(null)
 
@@ -18,7 +19,7 @@ function App() {
         'Authorization': 'Token a53382b391321ba72afc15cee5ab712239382438'
       }
     }).then(response => response.json())
-    .then(data => setMovie(data))
+    .then(data => setMovies(data))
     .catch(error => console.log(error))
   }, [])
 
@@ -31,6 +32,19 @@ function App() {
   const editClicked = movie => {
     setEditedMovie(movie)
     setSelectedMovie(null)
+  }
+
+  const updatedMovie = movie => {
+      const newMovies = movies.map(mov => {
+          if (mov.id === movie.id){
+            console.log(movie)
+            return movie; // if the condition is true mutate that particular index (child scope)
+          }
+        return mov; // if the condtion is false return initial movie (global scope)
+      })
+      // console.log(newMovies)
+    setMovies(newMovies)
+
   }
 
   return (
@@ -49,7 +63,7 @@ function App() {
             <MovieDetails movie={selectedMovie} updateMovie = {loadMovie}/>
 
             {/* edited option for Movie  */}
-            { editedMovie ?  <MovieForm movie={editedMovie}/> : null }
+            { editedMovie ?  <MovieForm movie={editedMovie} updatedMovie={updatedMovie} /> : null }
            
           </div>
        </div>

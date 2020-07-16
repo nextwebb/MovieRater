@@ -12,8 +12,7 @@ export class API {
            body: JSON.stringify(body)
          })
          .then((resp)=>{
-            resolve()
-            resp.json()
+            resolve( resp.json())
          })
        }) 
     }
