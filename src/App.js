@@ -48,12 +48,18 @@ function App() {
   }
 
   const newMovie = () => {
-    setEditedMovie({})
+    setEditedMovie({title:'', description:''})
     setSelectedMovie(null)
   }
 
   const movieCreated = movie => {
-    const newMovies = [...movies, movie];
+    // console.log("hello")
+    const newMovies = [...movies, movie]; //array spread operator
+    setMovies(newMovies);
+  }
+
+  const removeClicked = movie => {
+    const newMovies = movies.filter(mov => mov.id !== movie.id);
     setMovies(newMovies);
   }
 
@@ -66,7 +72,12 @@ function App() {
 
        <div className="layout">
           <div>
-            <MovieList Allmovies={movies} movieClicked={loadMovie} editClicked={editClicked} />
+            <MovieList 
+              Allmovies={movies}
+              movieClicked={loadMovie} 
+              editClicked={editClicked} 
+              removeClicked={removeClicked}
+            />
             <button onClick={newMovie}>New Movie</button>
           </div>
           <div>

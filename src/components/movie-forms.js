@@ -3,8 +3,8 @@ import { API } from '../api-service';
 
 function MovieForm(props) {
 
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
 
         // this react hook will run whenever we change prop.movie
     useEffect(() => {
@@ -39,7 +39,7 @@ function MovieForm(props) {
                          {
                              props.movie.id ? 
                              <button onClick={updateClicked}>Update</button> :
-                             <button onClick={createClicked}>Update</button>
+                             <button onClick={createClicked}>Create</button>
                          }
                         
                     </div>
