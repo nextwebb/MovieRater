@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { API } from '../api-service';
 
 function MovieForm(props) {
 
@@ -6,18 +7,20 @@ function MovieForm(props) {
     const [description, setDescription] = useState(props.movie.description);
 
     const updateClicked = () => {
-        console.log('update here!')
+       API.updateMovie(props.movie.id, {title, description })
+       .then(resp => console.log(resp))
+       .catch(err => console.log(err))
     }
 
     return (
             <React.Fragment>
                 {   props.movie? (
                      <div>
-                        <label for="title">Title</label><br/>
+                        <label htmlFor="title">Title</label><br/>
                         <input id="title" type="text" placeholder="title" value={title} 
                             onChange={ evt=> setTitle(evt.target.value)}
                             /><br/>
-                        <label for="description">Description</label><br/>
+                        <label htmlFor="description">Description</label><br/>
                         <textarea id="description" type="text" placeholder="Description" value={description} 
                             onChange={ evt=> setDescription(evt.target.value)}
                         ></textarea><br/>
