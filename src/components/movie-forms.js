@@ -1,16 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { API } from '../api-service';
 
 function MovieForm(props) {
 
-    const [title, setTitle] = useState(props.movie.title);
-    const [description, setDescription] = useState(props.movie.description);
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
 
+        // this react hook will run whenever we change prop.movie
+    useEffect(() => {
+        setTitle(props.movie.title)
+        setDescription(props.movie.description)
+    }, [props.movie])
+    
     const updateClicked = () => {
        API.updateMovie(props.movie.id, {title, description })
        .then(resp => props.updatedMovie(resp))
        .catch(err => console.log(err))
     }
+    const createClicked = () => {
+        API.createMovie({title, description })
+        .then(resp => props.movieCreated(resp))
+        .catch(err => console.log(err))
+     }
 
     return (
             <React.Fragment>
@@ -25,7 +36,12 @@ function MovieForm(props) {
                             onChange={ evt=> setDescription(evt.target.value)}
                         ></textarea><br/>
                          {/* the onclick property expects a reference to a function or an anonymous function,  for it to execute when the element is clicked.  */}
-                        <button onClick={updateClicked}>Update</button>
+                         {
+                             props.movie.id ? 
+                             <button onClick={updateClicked}>Update</button> :
+                             <button onClick={createClicked}>Update</button>
+                         }
+                        
                     </div>
                 ) : null 
                 }
