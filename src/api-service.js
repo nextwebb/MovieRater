@@ -33,6 +33,7 @@ export class API {
           })
         }) 
      }
+   
     static deleteMovie(mov_id) {
       // returning a promise
       return fetch(` http://127.0.0.1:8000/api/movies/${mov_id}/`,
@@ -43,5 +44,23 @@ export class API {
               'Authorization': `Token ${TOKEN} `
             }
           })
-        } 
+        
+}
+
+  static loginUser(body) {
+    return new Promise((resolve, reject)=> {
+    fetch(` http://127.0.0.1:8000/auth/`,
+    {
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body)
+      })
+      .then((resp)=>{
+        resolve( resp.json())
+      })
+    }) 
+  }
+
 }
