@@ -1,28 +1,22 @@
-import React, {useState, createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Auth from './components/auth'
 import * as serviceWorker from './serviceWorker';
 import {Route, BrowserRouter} from 'react-router-dom';
-
-export const TokenContext = createContext(null);
+import {CookiesProvider} from 'react-cookie'
 
 function Router(){
 
-  // const TOKEN = "a53382b391321ba72afc15cee5ab712239382438"
-  const [token, setToken ] = useState('');
-
-
-
   return (
     <React.StrictMode>
-      <TokenContext.Provider value={{token, setToken}}>
+      <CookiesProvider>
         <BrowserRouter>
           <Route exact path="/" component={Auth}/>
           <Route exact path="/movies" component={App}/>
         </BrowserRouter>
-      </TokenContext.Provider>
+      </CookiesProvider>
   </React.StrictMode>
   )
 }
