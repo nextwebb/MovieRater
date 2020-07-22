@@ -23,6 +23,17 @@ function MovieForm(props) {
         .catch(err => console.log(err))
      }
 
+     // return true if empty for one or both
+    //  return false if filled for on
+    // conditional variable assignment
+    //  isDisabled will be true if one of the conditions is true
+    // const isDisable = true + false = true
+    // const isDisable = false + true  = true
+    // const isDisable = false + false  = false
+    // const isDisable = true + true  = false
+     const isDisabled = title.length === 0 || description.length === 0
+   
+
     return (
             <React.Fragment>
                 {   props.movie? (
@@ -38,8 +49,10 @@ function MovieForm(props) {
                          {/* the onclick property expects a reference to a function or an anonymous function,  for it to execute when the element is clicked.  */}
                           {
                              props.movie.id ? 
-                             <button onClick={updateClicked}>Update</button> :
-                             <button onClick={createClicked}>Create</button>
+                            //  setting the disabled attribute based on a state in ReactJs
+                            // You can set disabled property through boolean value, like this
+                             <button onClick={updateClicked} disabled={isDisabled}>Update</button> :
+                             <button onClick={createClicked}disabled={isDisabled}>Create</button>
                          }
                         
                     </div>

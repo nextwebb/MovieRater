@@ -5,6 +5,8 @@ import MovieList from './components/movie-list';
 import MovieDetails from './components/movie-details';
 import MovieForm from './components/movie-forms'
 import {useCookies} from 'react-cookie'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   //returns an array of all movies from the api
@@ -75,7 +77,10 @@ function App() {
     <div className="App">
 
       <header className="App-header">
-          <h1>MovieRater</h1>
+          <h1>
+            <FontAwesomeIcon icon={faFilm}/>
+            <span> MovieRater</span>
+          </h1>
        </header>
 
        <div className="layout">
