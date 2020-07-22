@@ -8,9 +8,9 @@ import {useCookies} from 'react-cookie'
 
 function App() {
   //returns an array of all movies from the api
-  const [movies, setMovies] = useState([])
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [editedMovie, setEditedMovie] = useState(null)
+  const [movies, setMovies] = useState([]) // we expect an array
+  const [selectedMovie, setSelectedMovie] = useState(null); // we expect an object
+  const [editedMovie, setEditedMovie] = useState(null) // we expect an object
   const[token] = useCookies(['mr-token'])
 
   useEffect(()=> {

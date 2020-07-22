@@ -6,7 +6,7 @@ function Auth(){
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const [isLogginView, setIsLoginView] = useState(true)
     const [token, setToken] = useCookies(['mr-token']);
 
     // this hook listens for channges to the "token" cookie data
@@ -22,9 +22,16 @@ function Auth(){
         .catch((err) => console.log(err))
     }
 
+    const registerClicked = () => {
+        API.registerUser({username,password})
+        .then(() => loginClicked() )
+        .catch((err) => console.log(err))
+    }
+
 
     return (
         <div>
+            {isLogginView ? <h1>Login</h1> : <h1>Register</h1>}
             <label htmlFor="username">username</label><br/>
                 <input id="username" type="text" placeholder="username" value={username} 
                 onChange={ evt=> setUsername(evt.target.value)}
@@ -33,8 +40,15 @@ function Auth(){
                 <input id="password" type="password" placeholder="password" value={password} 
                 onChange={ evt=> setPassword(evt.target.value)}
                 /><br/>
-            <button onClick={loginClicked}>Login</button>
-                        
+                  { isLogginView ?  
+                   <button onClick={loginClicked}>Login</button> : 
+                   <button onClick={registerClicked}>Register</button>
+                  }
+                    {/* the loginview state is set to "login" by default, but on click it the state is set "register"  */}
+                { isLogginView ? 
+                    <p onClick={()=>setIsLoginView(false)}>You don't have an account? Register here!</p>:
+                    <p onClick={()=>setIsLoginView(true)}>You already have an account? Login here  </p>
+                }
         </div>
     )
 }
