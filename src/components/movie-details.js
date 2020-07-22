@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import {useCookies} from 'react-cookie';
 
 function MovieDetails(props){
 
     const [ higlighted, setHiglighted] = useState(-1)
     // we dont change props from the child
     // send it back to the parents , let it update its state
+    const [token] = useCookies(['mr-token']);
+
     const movie = props.movie;
 
     const higlightRate = high => evt => {
@@ -19,7 +22,7 @@ function MovieDetails(props){
             method:'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Token a53382b391321ba72afc15cee5ab712239382438'
+              'Authorization': `Token ${token['mr-token']}`
             },
             body: JSON.stringify({stars: (rate + 1)})
           })
@@ -33,7 +36,7 @@ function MovieDetails(props){
             method:'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Token a53382b391321ba72afc15cee5ab712239382438'
+                'Authorization': `Token ${token['mr-token']}`
             }
             })
             .then(response => response.json())

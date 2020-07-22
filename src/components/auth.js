@@ -9,6 +9,8 @@ function Auth(){
 
     const [token, setToken] = useCookies(['mr-token']);
 
+    // this hook listens for channges to the "token" cookie data
+    // check if we have token
     useEffect(() => {
         console.log(token['mr-token']);
         if(token['mr-token']) window.location.href = "/movies";

@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { API } from '../api-service';
-
+import {useCookies} from 'react-cookie';
 function MovieForm(props) {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-
+    const [token] = useCookies(['mr-token']);
         // this react hook will run whenever we change prop.movie
     useEffect(() => {
         setTitle(props.movie.title)
@@ -13,12 +13,12 @@ function MovieForm(props) {
     }, [props.movie])
     
     const updateClicked = () => {
-       API.updateMovie(props.movie.id, {title, description })
+       API.updateMovie(props.movie.id, {title, description }, token['mr-token'])
        .then(resp => props.updatedMovie(resp))
        .catch(err => console.log(err))
     }
     const createClicked = () => {
-        API.createMovie({title, description })
+        API.createMovie({title, description }, token['mr-token'])
         .then(resp => props.movieCreated(resp))
         .catch(err => console.log(err))
      }
@@ -36,7 +36,7 @@ function MovieForm(props) {
                             onChange={ evt=> setDescription(evt.target.value)}
                         ></textarea><br/>
                          {/* the onclick property expects a reference to a function or an anonymous function,  for it to execute when the element is clicked.  */}
-                         {
+                          {
                              props.movie.id ? 
                              <button onClick={updateClicked}>Update</button> :
                              <button onClick={createClicked}>Create</button>
