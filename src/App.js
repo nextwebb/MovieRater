@@ -19,9 +19,12 @@ function App() {
   // data = movies
   const [data, loading, error] = useFetch();
 
+  //listens for new data
+  // whenever theres new data trigger the useFetch hook
+  // and the hook calls the API
   useEffect(()=> {
-    
-  }, [])
+    setMovies(data);  
+  }, [data])
 
    // check if we have token
    useEffect(() => {
@@ -73,6 +76,10 @@ function App() {
     deleteToken(['mr-token']);
   }
 
+  // the return statements is unchanged, it stops the components from rendering
+  if (loading) return <h1>Loading ...</h1>
+  if (error) return <h1>Error Loading movies: {error}</h1>
+  
   return (
     <div className="App">
 

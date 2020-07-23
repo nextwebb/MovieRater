@@ -3,7 +3,6 @@ import { API } from '../api-service'
 import {useCookies} from 'react-cookie'
 
 function Auth(){
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLogginView, setIsLoginView] = useState(true)
