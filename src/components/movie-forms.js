@@ -23,14 +23,6 @@ function MovieForm(props) {
         .catch(err => console.log(err))
      }
 
-     // return true if empty for one or both
-    //  return false if filled for on
-    // conditional variable assignment
-    //  isDisabled will be true if one of the conditions is true
-    // const isDisable = true + false = true
-    // const isDisable = false + true  = true
-    // const isDisable = false + false  = false
-    // const isDisable = true + true  = false
      const isDisabled = title.length === 0 || description.length === 0
    
 

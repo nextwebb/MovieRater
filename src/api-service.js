@@ -2,7 +2,7 @@
 export class API {
     static updateMovie(movie_id, body, token) {
        return new Promise((resolve, reject)=> {
-        fetch(` http://127.0.0.1:8000/api/movies/${movie_id}/`,
+        fetch(` https://rate-movie-api.herokuapp.com/api/movies/${movie_id}/`,
         {
            method:'PUT',
            headers: {
@@ -18,7 +18,7 @@ export class API {
     }
 
     static getMovies(token) {
-      return fetch(' http://127.0.0.1:8000/api/movies/', {
+      return fetch(' https://rate-movie-api.herokuapp.com/api/movies/', {
         method:'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export class API {
 
     static createMovie(body, token) {
         return new Promise((resolve, reject)=> {
-         fetch(` http://127.0.0.1:8000/api/movies/`,
+         fetch(` https://rate-movie-api.herokuapp.com/api/movies/`,
          {
             method:'POST',
             headers: {
@@ -46,7 +46,7 @@ export class API {
    
     static deleteMovie(mov_id, token) {
       // returning a promise
-      return fetch(` http://127.0.0.1:8000/api/movies/${mov_id}/`,
+      return fetch(` https://rate-movie-api.herokuapp.com/api/movies/${mov_id}/`,
          {
             method:'DELETE',
             headers: {
@@ -59,7 +59,7 @@ export class API {
 
   static loginUser(body) {
     return new Promise((resolve, reject)=> {
-    fetch(` http://127.0.0.1:8000/auth/`,
+    fetch(` https://rate-movie-api.herokuapp.com/auth/`,
     {
         method:'POST',
         headers: {
@@ -75,7 +75,7 @@ export class API {
 
   static registerUser(body) {
     return new Promise((resolve, reject)=> {
-    fetch(` http://127.0.0.1:8000/api/users/`,
+    fetch(`https://rate-movie-api.herokuapp.com/api/users/`,
     {
         method:'POST',
         headers: {

@@ -17,7 +17,7 @@ function MovieDetails(props){
     }
 
     const rateClicked = rate => evt => {
-        fetch(` http://127.0.0.1:8000/api/movies/${movie.id}/rate_movie/`,
+        fetch(` https://rate-movie-api.herokuapp.com/api/movies/${movie.id}/rate_movie/`,
          {
             method:'POST',
             headers: {
@@ -32,7 +32,7 @@ function MovieDetails(props){
         }
 
         const getdetails = () => {
-            fetch(` http://127.0.0.1:8000/api/movies/${movie.id}/`, {
+            fetch(`https://rate-movie-api.herokuapp.com/api/movies/${movie.id}/`, {
             method:'GET',
             headers: {
                 'Content-Type': 'application/json',
